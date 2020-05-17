@@ -6,6 +6,12 @@ Simple CLI dice simulator for DnD.
 
 python3, colorama
 
+## Installation
+
+```sh
+sudo make install
+```
+
 ## Usage
 
 ```sh

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+
 import re
 import random
 from colorama import  Fore
@@ -29,7 +31,8 @@ Example:
 > 3d4
 ( 1 + 3 + 2 ) = 6
 
-Type q, quit or exit to quit
+Type q, quit or exit to quit the app
+Type clear or cls for clearing the screen
 """
 
 def read_input(text):
@@ -92,6 +95,8 @@ class Hand(object):
     return p
 
 if __name__ == "__main__":
+  os.system('clear')
+  
   print(WELCOME_MSG)
   while True:
     user_input = input('> ')
@@ -99,6 +104,9 @@ if __name__ == "__main__":
       break
     elif user_input in ('h', 'help'):
       print(HELP_MSG)
+      continue
+    elif user_input in ('cls', 'clear'):
+      os.system('clear')
       continue
 
     try:

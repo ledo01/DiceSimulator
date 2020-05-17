@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import os
-
 import re
 import random
+
 from colorama import  Fore
 
 PATTERN = re.compile(r'\s*(?P<nb>\d+)d(?P<sides>\d+)\s*(?:(?P<mod>[\+-])\s*(?P<val>\d+))?')
@@ -19,20 +19,24 @@ WELCOME_MSG = r"""
 (type help for instuctions)
 """
 
-HELP_MSG = """
+HELP_MSG = r"""
 Usage: [nb]d[sides](+-)[mod]
   nb        number of dices
   sides     number of sides
   mod       result modifier (+ or -)
+
+Special command:
+  q, quit, exit   quit the app
+  clear, cls      clear screen
+  %               redo last command
+  %[n]            redo command [n]
+  help            show this screen
   
 Example: 
 > 1d6 + 1
 ( 3 ) + 1 = 4
 > 3d4
 ( 1 + 3 + 2 ) = 6
-
-Type q, quit or exit to quit the app
-Type clear or cls for clearing the screen
 """
 
 def read_input(text):
@@ -96,10 +100,12 @@ class Hand(object):
 
 if __name__ == "__main__":
   os.system('clear')
-  
+
   print(WELCOME_MSG)
+  hist = []
+  n = 1
   while True:
-    user_input = input('> ')
+    user_input = input(f'[{n}]: ')
     if user_input in ('q', 'quit', 'exit'):
       break
     elif user_input in ('h', 'help'):
@@ -108,7 +114,14 @@ if __name__ == "__main__":
     elif user_input in ('cls', 'clear'):
       os.system('clear')
       continue
-
+    elif '%' in user_input:
+      _, i = user_input.split('%')
+      i = i or len(hist)
+      try:
+        user_input = hist[int(i)-1]
+      except IndexError:
+        print("Not a valid history command") 
+        continue
     try:
       hand = read_input(user_input)
     except ValueError as e:
@@ -116,3 +129,6 @@ if __name__ == "__main__":
     else:
       hand.roll()
       print(hand)
+
+    n+=1
+    hist.append(user_input)

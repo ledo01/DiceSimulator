@@ -17,3 +17,9 @@ sudo make install
 ```sh
 python3 dice.py
 ```
+
+Or if installed with make:
+
+```sh
+dice
+```

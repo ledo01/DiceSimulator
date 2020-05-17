@@ -3,7 +3,7 @@ import random
 from colorama import  Fore
 
 PATTERN = re.compile(r'\s*(?P<nb>\d+)d(?P<sides>\d+)\s*(?:(?P<mod>[\+-])\s*(?P<val>\d+))?')
-WELCOME_MSG = """
+WELCOME_MSG = r"""
  ______     _                   ______    _                        __          _                   
 |_   _ `.  (_)                .' ____ \  (_)                      [  |        / |_                 
   | | `. \ __   .---.  .---.  | (___ \_| __   _ .--..--.  __   _   | |  ,--. `| |-' .--.   _ .--.  

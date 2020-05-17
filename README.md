@@ -4,7 +4,7 @@ Simple CLI dice simulator for DnD.
 
 ## Requirements
 
-Python3, colorama
+python3, colorama
 
 ## Usage
 
